@@ -1,9 +1,9 @@
 console.log('Started', self);
 
-self.addEventListener('install', function(event) {
-  self.skipWaiting();
-  console.log('Installed', event);
-});
+// self.addEventListener('install', function(event) {
+//   self.skipWaiting();
+//   console.log('Installed', event);
+// });
 
 self.addEventListener('activate', function(event) {
 console.log('Activated', event);
@@ -29,7 +29,9 @@ let arrayOfFilesToCache = [
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(currentCacheName).then(function(cache) {
-      return cache.addAll(arrayOfFilesToCache);
+
+        console.log('Installed', event);
+        return cache.addAll(arrayOfFilesToCache);
     })
   );
 });
