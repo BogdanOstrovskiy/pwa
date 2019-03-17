@@ -12,32 +12,6 @@
 	<script src="../js/jquery-2.2.4.min.js"></script>
 	<script src="../js/main.js"></script>
 	<script type="text/javascript" src="../slick/slick.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0GXpNqj6pRyPvp3yCjKh-QeQ3sLCq1TY&callback=initMap"
-    async defer></script>
-	<script>
-		function initMap() {
-			var myLatLng = {lat: 38.926403, lng: -77.405725};
-			var styles = [ { "elementType": "geometry.stroke" },{ "stylers": [ { "saturation": -100 }, { "hue": "#cccccc" }, { "lightness": 10 }, { "gamma": 1.58 } ] } ];
-			var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
-			var mapOptions = {
-				center: myLatLng,
-				scrollwheel: false,
-				zoom: 16,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-				var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-					map.mapTypes.set('map_style', styledMap);
-					map.setMapTypeId('map_style');
-				var image = 'images/marker.png';
-				var marker = new google.maps.Marker({
-					map: map,
-					position: myLatLng,
-					icon: image,
-					title: 'www.brandi.com'
-			});
-		}
-	</script>
-	<script src="../js/map.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -106,7 +80,9 @@
 						</ul>
 					</div>
 				</div>
-				<div id="map"></div>
+				<div id="map">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d762.3620146130125!2d36.24113989964087!3d50.00629547373244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1552832518503" width="1980" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
 			</section>
 		</main>
 		<footer class="footer">
