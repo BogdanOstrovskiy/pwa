@@ -24,14 +24,15 @@
 		}
 
 		navigator.serviceWorker.register('https://bogdanostrovskiy.github.io/pwa/sw.js').then(function(registration) {
-				if (registration.installing) {
-						console.log('Service Worker is Installing')
-				}
+			if (registration.installing) {
+				console.log('Service Worker is Installing')
+			}
+		})
 
-				if (registration.waiting) {
-						console.log('Service Worker is Waiting')
-				}
-
+		navigator.serviceWorker.register('https://bogdanostrovskiy.github.io/pwa/sw.js').then(function(registration) {
+			if (registration.waiting) {
+				console.log('Service Worker is Waiting')
+			}
 		})
 
 	</script>
