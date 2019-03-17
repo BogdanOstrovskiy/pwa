@@ -17,11 +17,11 @@ self.addEventListener('push', function(event) {
 let currentCacheName = 'pwatest-sw-v1';
 
 let arrayOfFilesToCache = [
-    'https://bogdanostrovskiy.github.io/pwa/index.html',
-	'https://bogdanostrovskiy.github.io/pwa/features/index.html',
-	'https://bogdanostrovskiy.github.io/pwa/works/index.html',
-    'https://bogdanostrovskiy.github.io/pwa/team/index.html',
-    'https://bogdanostrovskiy.github.io/pwa/contact/index.html'
+    '/index.html',
+	'/features/index.html',
+	'/works/index.html',
+    '/team/index.html',
+    '/contact/index.html'
 ];
 
 self.addEventListener('install', function(event) {
