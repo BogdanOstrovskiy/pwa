@@ -22,7 +22,7 @@ self.addEventListener('fetch', function (event) {
 });
 
 
-let currentCacheName = 'pwatest-sw-v3';
+let currentCacheName = 'pwatest-sw-v4';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
@@ -43,18 +43,18 @@ let arrayOfFilesToCache = [
 
 
 self.addEventListener('install', function (event) {
-    event.waitUntil(
-        caches.keys().then(function (cacheNames) {
-            return Promise.all(
-                cacheNames.map(function (cacheName) {
-                    if (currentCacheName !== cacheName && cacheName.startsWith("pwatest-sw")) {
-                        console.log('cache deleted');
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
-    );
+    // event.waitUntil(
+    //     caches.keys().then(function (cacheNames) {
+    //         return Promise.all(
+    //             cacheNames.map(function (cacheName) {
+    //                 if (currentCacheName !== cacheName && cacheName.startsWith("pwatest-sw")) {
+    //                     console.log('cache deleted');
+    //                     return caches.delete(cacheName);
+    //                 }
+    //             })
+    //         );
+    //     })
+    // );
     event.waitUntil(
         caches.open(currentCacheName).then(function (cache) {
             console.log(arrayOfFilesToCache, 'Installed', event);
