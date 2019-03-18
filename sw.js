@@ -35,7 +35,8 @@ let arrayOfFilesToCache = [
 	'/pwa/features/index.html',
 	'/pwa/works/index.html',
     '/pwa/team/index.html',
-    '/pwa/contact/index.html'
+    '/pwa/contact/index.html',
+    '/pwa/'
 ];
 
 
