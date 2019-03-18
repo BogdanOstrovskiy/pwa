@@ -18,17 +18,18 @@ let currentCacheName = 'pwatest-sw-v1';
 
 let arrayOfFilesToCache = [
     '/index.html',
-	'/features/index.html',
-	'/works/index.html',
-    '/team/index.html',
-    '/contact/index.html'
+	'https://bogdanostrovskiy.github.io/pwa/features/index.html',
+	'https://bogdanostrovskiy.github.io/pwa/works/index.html',
+    'https://bogdanostrovskiy.github.io/pwa/team/index.html',
+    'https://bogdanostrovskiy.github.io/pwa/contact/index.html'
 ];
+
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(currentCacheName).then(function(cache) {
 
-        console.log('Installed', event);
+        console.log(arrayOfFilesToCache , 'Installed', event);
         return cache.addAll(arrayOfFilesToCache);
     })
   );
