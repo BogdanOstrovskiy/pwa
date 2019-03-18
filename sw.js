@@ -1,6 +1,6 @@
 console.log('Started', self);
 
-let currentCacheName = 'pwatest-sw-v7';
+let currentCacheName = 'pwatest-sw-v8';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
@@ -18,6 +18,27 @@ let arrayOfFilesToCache = [
     '/pwa/slick/slick.css',
     '/pwa/slick/slick-theme.css',
 ];
+
+self.addEventListener('install', function (event) {
+    event.waitUntil(
+        caches.keys().then(function (cacheNames) {
+            return Promise.all(
+                cacheNames.map(function (cacheName) {
+                    if (currentCacheName !== cacheName && cacheName.startsWith("pwatest-sw")) {
+                        console.log('cache deleted');
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+    event.waitUntil(
+        caches.open(currentCacheName).then(function (cache) {
+            console.log(arrayOfFilesToCache, 'Installed', event);
+            return cache.addAll(arrayOfFilesToCache);
+        })
+    )
+});
 
 self.addEventListener('install', function (event) {
     // self.skipWaiting();
@@ -42,27 +63,6 @@ self.addEventListener('fetch', function (event) {
             return caches.open(currentCacheName).then(function(cache) {
                 return cache.match(event.request);
             });
-        })
-    )
-});
-
-self.addEventListener('install', function (event) {
-    // event.waitUntil(
-    //     caches.keys().then(function (cacheNames) {
-    //         return Promise.all(
-    //             cacheNames.map(function (cacheName) {
-    //                 if (currentCacheName !== cacheName && cacheName.startsWith("pwatest-sw")) {
-    //                     console.log('cache deleted');
-    //                     return caches.delete(cacheName);
-    //                 }
-    //             })
-    //         );
-    //     })
-    // );
-    event.waitUntil(
-        caches.open(currentCacheName).then(function (cache) {
-            console.log(arrayOfFilesToCache, 'Installed', event);
-            return cache.addAll(arrayOfFilesToCache);
         })
     )
 });
