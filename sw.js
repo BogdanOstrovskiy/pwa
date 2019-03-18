@@ -36,7 +36,9 @@ let arrayOfFilesToCache = [
 	'/pwa/works/index.html',
     '/pwa/team/index.html',
     '/pwa/contact/index.html',
-    '/pwa/slick/*.*'
+    '/pwa/slick/slick.min.js',
+    '/pwa/slick/slick.css',
+    '/pwa/slick/slick-theme.css'
 ];
 
 
