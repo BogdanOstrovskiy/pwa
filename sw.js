@@ -22,7 +22,7 @@ self.addEventListener('fetch', function (event) {
 });
 
 
-let currentCacheName = 'pwatest-sw-v4';
+let currentCacheName = 'pwatest-sw-v5';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
