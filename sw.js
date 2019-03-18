@@ -37,7 +37,7 @@ self.addEventListener('install', function(event) {
     caches.keys().then(function(cacheNames) {
         return Promise.all(
             cacheNames.map(function(cacheName) {
-                if (CACHE_NAME !== cacheName &&  cacheName.startsWith("pwatest-sw")) {
+                if (currentCacheName !== cacheName && cacheName.startsWith("pwatest-sw")) {
                     console.log('cache deleted');
                     return caches.delete(cacheName);
                 }
