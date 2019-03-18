@@ -1,16 +1,24 @@
 console.log('Started', self);
 
-// self.addEventListener('install', function(event) {
-//   self.skipWaiting();
-//   console.log('Installed', event);
-// });
+self.addEventListener('install', function(event) {
+  self.skipWaiting();
+  console.log('Installed', event);
+});
 
 self.addEventListener('activate', function(event) {
-console.log('Activated', event);
+    console.log('Activated', event);
 });
 
 self.addEventListener('push', function(event) {
-  console.log('Push message received', event);
+    console.log('Push message received', event);
+});
+
+self.addEventListener('fetch', function(event) {
+    console.log('fetch action received', event);
+
+    event.respondWith(
+        caches.match(event.request)
+    )
 });
 
 
