@@ -14,7 +14,7 @@
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script>
 		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('https://bogdanostrovskiy.github.io/pwa/sw.js')
+			navigator.serviceWorker.register('/pwa/sw.js')
 			.then(function(registration) {
 				console.log('Registration successful, scope is:', registration.scope);
 			})
@@ -23,7 +23,7 @@
 			});
 		}
 
-		navigator.serviceWorker.register('https://bogdanostrovskiy.github.io/pwa/sw.js').then(function(registration) {
+		navigator.serviceWorker.register('/pwa/sw.js').then(function(registration) {
 			if (registration.installing) {
 				console.log('Service Worker is Installing')
 			}

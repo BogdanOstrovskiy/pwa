@@ -1,28 +1,6 @@
 console.log('Started', self);
 
-self.addEventListener('install', function (event) {
-    // self.skipWaiting();
-    console.log('installed', event);
-});
-
-self.addEventListener('activate', function (event) {
-    console.log('activated', event);
-});
-
-self.addEventListener('push', function (event) {
-    console.log('push message received', event);
-});
-
-self.addEventListener('fetch', function (event) {
-    console.log('fetch action received', event);
-
-    event.respondWith(
-        caches.match(event.request)
-    )
-});
-
-
-let currentCacheName = 'pwatest-sw-v5';
+let currentCacheName = 'pwatest-sw-v6';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
@@ -38,9 +16,36 @@ let arrayOfFilesToCache = [
     '/pwa/contact/index.html',
     '/pwa/slick/slick.min.js',
     '/pwa/slick/slick.css',
-    '/pwa/slick/slick-theme.css'
+    '/pwa/slick/slick-theme.css',
+    '/pwa/'
 ];
 
+self.addEventListener('install', function (event) {
+    // self.skipWaiting();
+    console.log('installed', event);
+});
+
+self.addEventListener('activate', function (event) {
+    console.log('activated', event);
+});
+
+self.addEventListener('push', function (event) {
+    console.log('push message received', event);
+});
+
+self.addEventListener('fetch', function (event) {
+    console.log('fetch action received', event.request.url);
+
+    event.respondWith(
+        // caches.match(event.request)
+        fetch(event.request).catch(function(event) {
+            console.error('Returning offline page instead.', event);
+            return caches.open(currentCacheName).then(function(cache) {
+                return cache.match(event.request);
+            });
+        })
+    )
+});
 
 self.addEventListener('install', function (event) {
     // event.waitUntil(
