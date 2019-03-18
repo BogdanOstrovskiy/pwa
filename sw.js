@@ -1,16 +1,16 @@
 console.log('Started', self);
 
 self.addEventListener('install', function(event) {
-  self.skipWaiting();
-  console.log('Installed', event);
+  // self.skipWaiting();
+  console.log('installed', event);
 });
 
 self.addEventListener('activate', function(event) {
-    console.log('Activated', event);
+    console.log('activated', event);
 });
 
 self.addEventListener('push', function(event) {
-    console.log('Push message received', event);
+    console.log('push message received', event);
 });
 
 self.addEventListener('fetch', function(event) {
@@ -22,7 +22,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 
-let currentCacheName = 'pwatest-sw-v2';
+let currentCacheName = 'pwatest-sw-v3';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
