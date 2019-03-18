@@ -17,7 +17,8 @@ self.addEventListener('push', function(event) {
 let currentCacheName = 'pwatest-sw-v1';
 
 let arrayOfFilesToCache = [
-    '/pwa/',
+    '/pwa/js/js/*.js',
+    '/pwa/js/css/*.css',
     '/pwa/index.html',
 	'/pwa/features/index.html',
 	'/pwa/works/index.html',
