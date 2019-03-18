@@ -1,6 +1,6 @@
 console.log('Started', self);
 
-let currentCacheName = 'pwatest-sw-v6';
+let currentCacheName = 'pwatest-sw-v7';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
@@ -17,7 +17,6 @@ let arrayOfFilesToCache = [
     '/pwa/slick/slick.min.js',
     '/pwa/slick/slick.css',
     '/pwa/slick/slick-theme.css',
-    '/pwa/'
 ];
 
 self.addEventListener('install', function (event) {
