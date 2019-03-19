@@ -1,6 +1,6 @@
 console.log('Started', self);
 
-let currentCacheName = 'pwatest-sw-v9';
+let currentCacheName = 'pwatest-sw-v10';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
