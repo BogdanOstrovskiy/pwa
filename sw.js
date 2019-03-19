@@ -1,6 +1,6 @@
 console.log('Started', self);
 
-let currentCacheName = 'pwatest-sw-v8';
+let currentCacheName = 'pwatest-sw-v9';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
@@ -32,6 +32,7 @@ self.addEventListener('install', function (event) {
             );
         })
     );
+
     event.waitUntil(
         caches.open(currentCacheName).then(function (cache) {
             console.log(arrayOfFilesToCache, 'Installed', event);
@@ -57,12 +58,13 @@ self.addEventListener('fetch', function (event) {
     console.log('fetch action received', event.request.url);
 
     event.respondWith(
-        // caches.match(event.request)
-        fetch(event.request).catch(function(event) {
-            console.error('Returning offline page instead.', event);
-            return caches.open(currentCacheName).then(function(cache) {
-                return cache.match(event.request);
-            });
-        })
+        caches.match(event.request)
+            .then(function(response) {
+                if (response) {
+                    return response
+                } 
+                return fetch(event.request)
+            })
+     
     )
 });
