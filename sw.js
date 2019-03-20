@@ -1,6 +1,6 @@
 console.log('Started', self);
 
-let currentCacheName = 'pwatest-sw-v10';
+let currentCacheName = 'pwatest-sw-v12';
 
 let arrayOfFilesToCache = [
     '/pwa/js/main.js',
@@ -10,13 +10,13 @@ let arrayOfFilesToCache = [
     '/pwa/css/socicon.css',
     '/pwa/css/style.css',
     '/pwa/index.html',
-    // '/pwa/features/index.html',
-    // '/pwa/works/index.html',
-    // '/pwa/team/index.html',
-    // '/pwa/contact/index.html',
-    // '/pwa/slick/slick.min.js',
-    // '/pwa/slick/slick.css',
-    // '/pwa/slick/slick-theme.css',
+    '/pwa/features/index.html',
+    '/pwa/works/index.html',
+    '/pwa/team/index.html',
+    '/pwa/contact/index.html',
+    '/pwa/slick/slick.min.js',
+    '/pwa/slick/slick.css',
+    '/pwa/slick/slick-theme.css',
 ];
 
 self.addEventListener('install', function (event) {
@@ -54,36 +54,31 @@ self.addEventListener('push', function (event) {
     console.log('push message received', event);
 });
 
-// self.addEventListener('fetch', function (event) {
-//     console.log('fetch action received', event.request.url);
-
-//     event.respondWith(
-//         caches.match(event.request)
-//             .then(function(response) {
-//                 if (response) {
-//                     return response
-//                 } 
-//                 return fetch(event.request);
-//             }
-//         )
-     
-//     )
-// });
-
 self.addEventListener('fetch', function (event) {
     console.log('fetch action received', event.request.url);
 
     event.respondWith(
         caches.match(event.request)
-            .then(function(resp) {
-                return resp || fetch(event.request).then(function(response) {
-                    return caches.open(currentCacheName).then(function(cache) {
-                        caches.put(event.request, response.clone());
-                        return response;
-                    })
-                })
+            .then(function(response) {
+                if (response) {
+                    return response
+                } 
+                return fetch(event.request);
             }
         )
      
+    )
+});
+
+self.addEventListener('fetch', function (event) { 
+
+    event.respondWith(
+
+        fetch(event.request).then(function(response){
+            return caches.open(currentCacheName).then(function(cache){
+                cache.put(event.request.url, response.clone());
+                return response.clone();
+            })
+        })
     )
 });
